@@ -46,11 +46,6 @@ class Server {
       "/",
       express.static(path.join(__dirname, "../../dist/assets"))
     );
-
-    mongoose.connect(
-      `mongodb://${databaseConfig.ip}:${databaseConfig.port}/${databaseConfig.name}`,
-      { useNewUrlParser: true }
-    );
   }
 
   routes() {
