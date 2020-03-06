@@ -5,7 +5,7 @@ import Sequelize from "sequelize";
 
 import { databaseConfig } from "./config";
 import Router from "./routes";
-import User from "./routes/users/user.model";
+import { User, UsersService } from "./routes/users";
 
 class Server {
   constructor() {
@@ -60,7 +60,6 @@ class Server {
       console.log("Connection to database has been established successfully.");
       User.init(sequelize);
       await sequelize.sync();
-      const user = User.create({ username: "tak", password: "1234" });
     } catch (err) {
       console.log("Connection to database failed", err);
     }

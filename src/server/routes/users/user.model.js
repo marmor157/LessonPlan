@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 class User extends Sequelize.Model {
   static init(sequelize) {
-    return super.init(
+    super.init(
       {
         id: {
           type: Sequelize.INTEGER,
@@ -15,10 +15,6 @@ class User extends Sequelize.Model {
         password: {
           type: Sequelize.STRING,
           allowNull: false
-          /*async set(val) {
-            const hash = await bcrypt.hash(val, 10);
-            this.setDataValue("password", hash);
-          }*/
         },
         email: {
           type: Sequelize.STRING,
@@ -29,6 +25,18 @@ class User extends Sequelize.Model {
       },
       { sequelize, modelName: "user" }
     );
+
+    this.beforeCreate(async user => {
+      const hash = await bcrypt.hash(user.password, 10);
+      user.password = hash;
+    });
+
+    this.beforeBulkUpdate(async user => {
+      if (user.attributes.password) {
+        const hash = await bcrypt.hash(user.attributes.password, 10);
+        user.attributes.password = hash;
+      }
+    });
   }
 }
 
