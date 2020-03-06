@@ -1,9 +1,11 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
+import Sequelize from "sequelize";
 
 import { databaseConfig } from "./config";
 import Router from "./routes";
+import User from "./routes/users/user.model";
 
 class Server {
   constructor() {
@@ -13,7 +15,7 @@ class Server {
     this.handleErrors();
   }
 
-  config() {
+  async config() {
     this.app.use(bodyParser.json()); // support json encoded bodies
     this.app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -46,6 +48,22 @@ class Server {
       "/",
       express.static(path.join(__dirname, "../../dist/assets"))
     );
+
+    const { name, username, password, host, port } = databaseConfig;
+    const sequelize = new Sequelize(name, username, password, {
+      host: host,
+      dialect: "mysql"
+    });
+
+    try {
+      await sequelize.authenticate();
+      console.log("Connection to database has been established successfully.");
+      User.init(sequelize);
+      await sequelize.sync();
+      const user = User.create({ username: "tak", password: "1234" });
+    } catch (err) {
+      console.log("Connection to database failed", err);
+    }
   }
 
   routes() {
