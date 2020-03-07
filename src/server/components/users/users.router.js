@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import authenticate from "../../middlewares/authenticate";
-import { UsersService } from ".";
+import { UsersService } from "./users.service";
 import { jwtSecretCode } from "../../config";
 
 export default class UsersRouter {

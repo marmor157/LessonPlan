@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 
 import { databaseConfig } from "./config";
-import Router from "./routes";
-import { User, UsersService } from "./routes/users";
+import { Router, Models } from "./components";
 
 class Server {
   constructor() {
@@ -49,7 +48,7 @@ class Server {
       express.static(path.join(__dirname, "../../dist/assets"))
     );
 
-    const { name, username, password, host, port } = databaseConfig;
+    const { name, username, password, host } = databaseConfig;
     const sequelize = new Sequelize(name, username, password, {
       host: host,
       dialect: "mysql"
@@ -58,7 +57,10 @@ class Server {
     try {
       await sequelize.authenticate();
       console.log("Connection to database has been established successfully.");
-      User.init(sequelize);
+
+      const models = new Models();
+      models.initModels(sequelize);
+
       await sequelize.sync();
     } catch (err) {
       console.log("Connection to database failed", err);

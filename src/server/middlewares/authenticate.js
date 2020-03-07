@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import { jwtSecretCode } from "../config";
-import { UsersService } from "../routes/users";
+import { UsersService } from "../components/users";
 
 export default async function authenticate(req, res, next) {
   const authorizationHeader = req.headers["authorization"];
