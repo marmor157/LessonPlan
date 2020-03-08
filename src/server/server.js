@@ -58,8 +58,8 @@ class Server {
       await sequelize.authenticate();
       console.log("Connection to database has been established successfully.");
 
-      const models = new Models();
-      models.initModels(sequelize);
+      this.models = new Models();
+      this.models.initModels(sequelize);
 
       await sequelize.sync();
     } catch (err) {
