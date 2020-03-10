@@ -34,6 +34,19 @@ class HoursService {
       userId
     });
   }
+
+  async createUsersDefaultHours(userId) {
+    let hoursIds = [];
+    for (let hourId = 0; hourId < 15; hourId++) {
+      const ret = await this.addHourToUser({
+        userId,
+        startHour: 0,
+        finishHour: 0
+      });
+      hoursIds.push(ret.id);
+    }
+    return hoursIds;
+  }
 }
 
 export default new HoursService(Hour);

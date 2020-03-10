@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import authenticate from "../../middlewares/authenticate";
-import { LessonsService } from "./lessons.service";
+import LessonsService from "./lessons.service";
 
 export default class LessonsRouter {
   constructor(route) {
@@ -10,5 +10,12 @@ export default class LessonsRouter {
     this.configure();
   }
 
-  configure() {}
+  configure() {
+    this.router.get("/", authenticate, async (req, res, next) => {
+      const data = await LessonsService.getCurrentLesson(req.userID);
+
+      res.status(200).json(data);
+      next();
+    });
+  }
 }

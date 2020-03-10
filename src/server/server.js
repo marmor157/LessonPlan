@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import Sequelize, { Model } from "sequelize";
+import Sequelize from "sequelize";
 
 import { databaseConfig } from "./config";
 import { Router, Models } from "./components";
@@ -10,7 +10,8 @@ class Server {
   constructor() {
     this.app = express();
     this.config();
-    this.routes();
+    this.initRoutes();
+    this.initDatabase();
     this.handleErrors();
   }
 
@@ -47,7 +48,9 @@ class Server {
       "/",
       express.static(path.join(__dirname, "../../dist/assets"))
     );
+  }
 
+  async initDatabase() {
     const { name, username, password, host } = databaseConfig;
     const sequelize = new Sequelize(name, username, password, {
       host: host,
@@ -67,7 +70,7 @@ class Server {
     }
   }
 
-  routes() {
+  initRoutes() {
     this.router = new Router();
     this.router.applyRoutes(this.app);
   }

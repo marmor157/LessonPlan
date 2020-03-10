@@ -7,7 +7,14 @@ import { Teacher } from "./teachers";
 
 export default class Models {
   constructor() {
-    this.models = [User, Hour, Lesson, School, Subject, Teacher];
+    this.models = [
+      User,
+      Hour,
+      Lesson,
+      //School,
+      Subject
+      //Teacher
+    ];
   }
 
   initModels(sequelize) {
@@ -18,19 +25,21 @@ export default class Models {
   }
 
   defineRelations() {
-    Hour.belongsTo(School);
-    User.belongsTo(School);
+    //Hour.belongsTo(School);
+    //User.belongsTo(School);
 
-    Teacher.belongsToMany(School, { through: "SchoolTeacher" });
-    School.belongsToMany(Teacher, { through: "SchoolTeacher" });
+    //Teacher.belongsToMany(School, { through: "SchoolTeacher" });
+    //School.belongsToMany(Teacher, { through: "SchoolTeacher" });
 
-    Subject.belongsToMany(School, { through: "SchoolSubject" });
-    School.belongsToMany(Subject, { through: "SchoolSubject" });
+    //Subject.belongsToMany(School, { through: "SchoolSubject" });
+    //School.belongsToMany(Subject, { through: "SchoolSubject" });
 
-    Subject.belongsTo(Teacher);
+    //Subject.belongsTo(User);
 
     Lesson.belongsTo(Subject);
-
     Lesson.belongsTo(User);
+    Lesson.belongsTo(Hour);
+
+    Hour.belongsTo(User);
   }
 }

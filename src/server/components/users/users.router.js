@@ -21,6 +21,17 @@ export default class UsersRouter {
       next();
     });
 
+    this.router.put("/", async (req, res, next) => {
+      const userData = req.body;
+      try {
+        const data = await UsersService.createUser(userData);
+
+        res.status(200).json(data);
+      } catch (err) {
+        res.status(400).send(err);
+      }
+    });
+
     this.router.post("/auth", async (req, res, next) => {
       const { username, password } = req.body;
       try {

@@ -4,12 +4,6 @@ class Hour extends Sequelize.Model {
   static init(sequelize) {
     super.init(
       {
-        id: {
-          type: Sequelize.INTEGER,
-          autoIncrement: true,
-          primaryKey: true,
-          allowNull: false
-        },
         //hours stored as minutes past 00:00
         startHour: {
           type: Sequelize.INTEGER,

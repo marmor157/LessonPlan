@@ -1,4 +1,6 @@
 import User from "./user.model";
+import { HoursService } from "../hours";
+import { LessonsService } from "../lessons";
 
 class UsersService {
   constructor(user) {
@@ -25,8 +27,18 @@ class UsersService {
     return await this.user.findAll({ where });
   }
 
-  async saveUser(user) {
-    return await this.user.create(user);
+  async createUser(user) {
+    const userData = await this.user.create(user);
+
+    const hoursId = await HoursService.createUsersDefaultHours(userData.id);
+
+    console.log(hoursId);
+    await LessonsService.createUsersDefaultLessons({
+      userId: userData.id,
+      hoursId
+    });
+
+    return userData;
   }
 
   async deleteUserById(id) {
