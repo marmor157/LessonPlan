@@ -12,7 +12,7 @@ class HoursService {
   }
 
   async getHoursByUserId(userId) {
-    return await this.hour.find({
+    return await this.hour.findAll({
       where: { userId }
     });
   }
