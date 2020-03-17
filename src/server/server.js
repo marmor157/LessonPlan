@@ -54,7 +54,8 @@ class Server {
     const { name, username, password, host } = databaseConfig;
     const sequelize = new Sequelize(name, username, password, {
       host: host,
-      dialect: "mysql"
+      dialect: "mysql",
+      logging: false
     });
 
     try {

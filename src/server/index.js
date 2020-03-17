@@ -2,8 +2,8 @@ import path from "path";
 import app from "./server";
 import webpackDevServer from "./webpack-dev-server";
 
-/*webpackDevServer(app);
-
+webpackDevServer(app);
+/*
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../dist/index.html"));
 });*/

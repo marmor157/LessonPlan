@@ -1,5 +1,11 @@
 import React from "react";
+import MainScreen from "./components/MainScreen/MainScreen";
+import "./app.scss";
 
 export default () => {
-  return <div>Base React Template</div>;
+  return (
+    <div className="container">
+      <MainScreen />
+    </div>
+  );
 };
