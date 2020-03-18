@@ -1,6 +1,8 @@
+@import "../../styles/styles";
+
 .mainScreen {
   text-align: center;
-  background-color: rgb(50, 50, 50);
+  background-color: $background-page;
   height: 100vh;
 }
 
