@@ -6,6 +6,10 @@
   background-color: $background-pane;
   left: -100%;
   transition: 1s;
+  padding: {
+    left: 10px;
+    right: 10px;
+  }
 
   &--show {
     left: 0;

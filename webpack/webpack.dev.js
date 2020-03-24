@@ -11,7 +11,7 @@ module.exports = merge(baseConfig, {
       "webpack-hot-middleware/client"
     ]
   },
-  devtool: "source-map",
+  devtool: "inline-source-map",
   mode: "development",
   module: {
     rules: [
