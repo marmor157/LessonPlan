@@ -6,10 +6,7 @@ export default class HorizontalMenuOption extends PureComponent {
     const { text, faIconName } = this.props;
     return (
       <div className="horizontalMenu__option">
-        <div className="horizontalMenu__option__text">{text}</div>
-        <div className="horizontalMenu__option__icon">
-          <FontAwesomeIcon icon={faIconName} />
-        </div>
+        <FontAwesomeIcon icon={faIconName} size="lg" />
       </div>
     );
   }

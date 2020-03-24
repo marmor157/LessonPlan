@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { formatHour } from "../utils/hourUtils";
 
 export default class Clock extends Component {
   constructor(props) {
@@ -32,7 +33,7 @@ export default class Clock extends Component {
   }
 
   render() {
-    const { hour, minute } = this.state;
+    const { hour, minute } = formatHour(this.state);
     return (
       <span className="clock">
         {hour} {minute}
