@@ -1,8 +1,16 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const baseConfig = require("./webpack.config");
+const webpackHotMiddleware = require("webpack-hot-middleware");
+const path = require("path");
 
 module.exports = merge(baseConfig, {
+  entry: {
+    app: [
+      path.join(__dirname, "../src/client/index.jsx"),
+      "webpack-hot-middleware/client"
+    ]
+  },
   devtool: "source-map",
   mode: "development",
   module: {
@@ -29,5 +37,6 @@ module.exports = merge(baseConfig, {
         ]
       }
     ]
-  }
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 });

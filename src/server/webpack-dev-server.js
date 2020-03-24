@@ -1,5 +1,6 @@
 import webpack from "webpack";
 import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackConfigDev from "../../webpack/webpack.dev";
 import webpackConfigProd from "../../webpack/webpack.prod";
 
@@ -9,7 +10,9 @@ export default function webpackDevServer(app) {
   const compiler = webpack(
     env === "production" ? webpackConfigProd : webpackConfigDev
   );
+
   app.use(webpackDevMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler));
 
   app.set("env", env);
 }

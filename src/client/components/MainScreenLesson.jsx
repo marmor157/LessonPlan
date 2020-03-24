@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
-import "./Lesson.scss";
 
-export default class Lesson extends PureComponent {
+export default class MainScreenLesson extends PureComponent {
   render() {
     const {
       dayText,
@@ -11,7 +10,7 @@ export default class Lesson extends PureComponent {
     } = this.props;
 
     return (
-      <div className="lesson">
+      <div className="mainScreen__lesson">
         {dayText}:<br />
         {subjectName}
         <br />

@@ -1,7 +1,8 @@
 import React from "react";
-import MainScreen from "./components/MainScreen/MainScreen";
-import HorizontalMenu from "./components/HorizontalMenu/HorizontalMenu";
+import MainScreen from "./components/MainScreen";
+import HorizontalMenu from "./components/HorizontalMenu";
 import "./fontawesome";
+import "./styles/main.scss";
 
 import "./app.scss";
 
