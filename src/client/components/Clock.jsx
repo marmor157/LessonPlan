@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatHour } from "../utils/hourUtils";
+import formatHour from "../utils/formatHour";
 
 export default class Clock extends Component {
   constructor(props) {
@@ -9,7 +9,7 @@ export default class Clock extends Component {
     this.state = {
       hour: date.getHours(),
       minute: date.getMinutes(),
-      intervalId: null
+      intervalId: null,
     };
 
     this.newTime = this.newTime.bind(this);
@@ -28,7 +28,7 @@ export default class Clock extends Component {
     const date = new Date();
     this.setState({
       hour: date.getHours(),
-      minute: date.getMinutes()
+      minute: date.getMinutes(),
     });
   }
 

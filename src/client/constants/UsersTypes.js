@@ -1,0 +1,7 @@
+export const USERS_TYPES = {
+  REQUEST_USER: "users/REQUEST_USERS",
+  RECEIVE_USER: "users/RECEIVE_USER",
+  CLEAR_USER: "users/CLEAR_USER",
+  UPDATE_USER: "users/UPDATE_USER",
+  SET_ERRORS: "users/SET_ERRORS",
+};

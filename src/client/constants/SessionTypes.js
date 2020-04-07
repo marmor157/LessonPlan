@@ -1,0 +1,5 @@
+export const SESSION_TYPES = {
+  SET_CURRENT_USER: "session/SET_CURRENT_USER",
+  REQUEST_SIGNIN: "session/REQUEST_SIGNIN",
+  SET_ERRORS: "session/SET_ERRORS",
+};
