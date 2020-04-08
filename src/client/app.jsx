@@ -1,17 +1,19 @@
 import React, { useState, Component } from "react";
+import { connect } from "react-redux";
 import MainScreen from "./components/MainScreen";
 import HorizontalMenu from "./components/HorizontalMenu";
+import FullScreenPane from "./components/FullScreenPane";
+import LoginScreen from "./components/LoginScreen";
+import * as PanesActions from "./actions/PanesActions";
+
 import "./fontawesome";
 import "./styles/main.scss";
-import FullScreenPane from "./components/FullScreenPane";
-
-import * as PanesActions from "./actions/PanesActions";
-import { connect } from "react-redux";
 
 class App extends Component {
   render() {
     return (
       <div className="container">
+        <LoginScreen />
         <MainScreen />
         <HorizontalMenu />
         <FullScreenPane
@@ -26,9 +28,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    panes: state.panes
+    panes: state.panes,
   };
 };
 

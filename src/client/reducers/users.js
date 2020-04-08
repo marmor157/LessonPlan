@@ -8,7 +8,7 @@ const initialState = {
 
 export function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case USER_TYPES.REQUEST_USER: {
+    case USERS_TYPES.REQUEST_USER: {
       return {
         ...state,
         isLoading: true,

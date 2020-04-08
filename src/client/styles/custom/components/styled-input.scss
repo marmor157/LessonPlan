@@ -1,0 +1,19 @@
+.hasError {
+  label,
+  input {
+    border-color: red !important;
+  }
+}
+
+.styledInput {
+  white-space: nowrap;
+  label {
+    font-size: 20px;
+    color: rgb(92, 92, 92);
+    display: inline-block;
+  }
+  input {
+    margin-left: 10px;
+    border: 1px solid rgb(216, 216, 216);
+  }
+}

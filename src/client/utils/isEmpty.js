@@ -1,3 +1,5 @@
-export default isEmpty = (obj) => {
+export const isEmpty = (obj) => {
   return Object.keys(obj).length === 0;
 };
+
+export default isEmpty;
