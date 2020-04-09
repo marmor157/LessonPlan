@@ -7,8 +7,8 @@ export default class MainScreen extends Component {
     return (
       <div className="mainScreen">
         <Clock />
-        <MainScreenLesson dayText="Teraz" roomText="Sala" />
-        <MainScreenLesson dayText="Następnie" roomText="Sala" />
+        <MainScreenLesson dayText="Now" roomText="Room" />
+        <MainScreenLesson dayText="Next" roomText="Room" />
       </div>
     );
   }

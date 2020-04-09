@@ -15,19 +15,19 @@ class LessonSerivce {
       day,
       userId,
       subjectId,
-      hourId
+      hourId,
     });
   }
 
   async createUsersDefaultLessons({ userId, hoursId }) {
     for (let day = 1; day < 6; day++) {
-      hoursId.forEach(async hourId => {
+      hoursId.forEach(async (hourId) => {
         await this.addLesson({
           userId,
           roomNumber: "",
           day,
           hourId,
-          subjectId: 1
+          subjectId: 1,
         });
       });
     }
@@ -38,8 +38,8 @@ class LessonSerivce {
       { roomNumber, subjectId },
       {
         where: {
-          id
-        }
+          id,
+        },
       }
     );
 
@@ -52,9 +52,9 @@ class LessonSerivce {
     const todaysLessons = await this.lesson.findAll({
       where: {
         userId,
-        day: curretDay
+        day: curretDay,
       },
-      include: [{ model: Hour }, { model: Subject }]
+      include: [{ model: Hour }, { model: Subject }],
     });
 
     return todaysLessons;
@@ -63,7 +63,7 @@ class LessonSerivce {
   async getAllLessons(userId) {
     const lessons = await this.lesson.findAll({
       where: { userId },
-      include: [{ model: Hour }, { model: Subject }]
+      include: [{ model: Hour }, { model: Subject }],
     });
 
     return lessons;
@@ -77,7 +77,7 @@ class LessonSerivce {
     const currentLesson = await this.lesson.findOne({
       where: {
         userId,
-        day: currDate.getDay()
+        day: currDate.getDay(),
       },
       include: [
         {
@@ -85,18 +85,18 @@ class LessonSerivce {
           where: {
             [Op.and]: {
               startHour: {
-                [Op.lte]: minutesPastMidnight
+                [Op.lte]: minutesPastMidnight,
               },
               finishHour: {
-                [Op.gt]: minutesPastMidnight
-              }
-            }
-          }
+                [Op.gt]: minutesPastMidnight,
+              },
+            },
+          },
         },
         {
-          model: Subject
-        }
-      ]
+          model: Subject,
+        },
+      ],
     });
 
     return currentLesson;
@@ -120,25 +120,25 @@ class LessonSerivce {
         [Op.or]: {
           [Op.and]: {
             "$Hours.startHour": {
-              [Op.gt]: minutesPastMidnight
+              [Op.gt]: minutesPastMidnight,
             },
-            day: currDate.getDay()
+            day: currDate.getDay(),
           },
-          day: nextSchoolDay
-        }
+          day: nextSchoolDay,
+        },
       },
       include: [
         {
-          model: Hour
+          model: Hour,
         },
         {
-          model: Subject
-        }
+          model: Subject,
+        },
       ],
       order: [
         ["day", "DESC"],
-        ["id", "ASC"]
-      ]
+        ["id", "ASC"],
+      ],
     });
 
     return nextLesson;

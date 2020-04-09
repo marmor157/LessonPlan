@@ -9,6 +9,7 @@ export default class Clock extends Component {
     this.state = {
       hour: date.getHours(),
       minute: date.getMinutes(),
+      colon: false,
       intervalId: null,
     };
 
@@ -29,14 +30,18 @@ export default class Clock extends Component {
     this.setState({
       hour: date.getHours(),
       minute: date.getMinutes(),
+      colon: !this.state.colon,
     });
   }
 
   render() {
     const { hour, minute } = formatHour(this.state);
+    const { colon } = this.state;
     return (
       <span className="clock">
-        {hour} {minute}
+        {hour}
+        <span className="clock__colon">{colon ? ":" : ""}</span>
+        {minute}
       </span>
     );
   }

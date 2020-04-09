@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import StyledInput from "./StyledInput";
 import StyledButton from "./StyledButton";
-import { userSigninRequest } from "../actions/SessionActions";
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class LoginScreen extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
+  onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 

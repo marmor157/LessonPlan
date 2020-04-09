@@ -19,7 +19,7 @@ class Server {
     this.app.use(bodyParser.json()); // support json encoded bodies
     this.app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-    this.app.use(function(req, res, next) {
+    this.app.use(function (req, res, next) {
       // Website you wish to allow to connect
       res.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -55,7 +55,7 @@ class Server {
     const sequelize = new Sequelize(name, username, password, {
       host: host,
       dialect: "mysql",
-      logging: false
+      logging: false,
     });
 
     try {
@@ -65,7 +65,7 @@ class Server {
       this.models = new Models();
       this.models.initModels(sequelize);
 
-      await sequelize.sync();
+      await sequelize.sync({ force: false, alter: true });
     } catch (err) {
       console.log("Connection to database failed", err);
     }

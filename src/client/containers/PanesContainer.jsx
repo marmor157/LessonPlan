@@ -2,8 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import FullScreenPane from "../components/FullScreenPane";
 import * as PanesActions from "../actions/PanesActions";
+import * as LessonsActions from "../actions/LessonsActions";
 
 class PanesContainer extends Component {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      prevProps.isAuthenticated != this.props.isAuthenticated &&
+      this.props.isAuthenticated
+    ) {
+      this.props.getLessons();
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -29,9 +38,10 @@ class PanesContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     panes: state.panes,
+    isAuthenticated: state.session.isAuthenticated,
   };
 };
 
-const mapDispatchToProps = { ...PanesActions };
+const mapDispatchToProps = { ...PanesActions, ...LessonsActions };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanesContainer);

@@ -1,3 +1,7 @@
 .clock {
   font-size: 20vh;
+  &__colon {
+    display: inline-block;
+    width: 20px;
+  }
 }
