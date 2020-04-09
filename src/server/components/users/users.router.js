@@ -42,19 +42,31 @@ export default class UsersRouter {
           const token = jwt.sign(
             {
               id: user.id,
-              name: user.username
+              name: user.username,
             },
             jwtSecretCode
           );
           res.status(200).json({ token });
         } else {
           res.status(401).json({
-            errors: { password: "Invalid password" }
+            errors: { password: "Invalid password" },
           });
         }
       } catch (error) {
-        console.log(error);
-        res.status(401).json({ errors: { form: "Invalid data" } });
+        try {
+          const data = await UsersService.createUser({ username, password });
+
+          const token = jwt.sign(
+            {
+              id: data.id,
+              name: data.username,
+            },
+            jwtSecretCode
+          );
+          res.status(200).json({ token });
+        } catch (err) {
+          res.status(400).send(err);
+        }
       }
 
       next();

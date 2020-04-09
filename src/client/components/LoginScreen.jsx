@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import StyledInput from "./StyledInput";
 import StyledButton from "./StyledButton";
+import { userSigninRequest } from "../actions/SessionActions";
 
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: "",
+      username: "",
       password: "",
     };
 
@@ -20,19 +21,23 @@ export default class LoginScreen extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    this.props.userSigninRequest(this.state);
   }
 
   render() {
+    const { isAuthenticated } = this.props.session;
     return (
-      <div className="loginScreen">
+      <div
+        className={`loginScreen ${isAuthenticated ? "loginScreen--hide" : ""}`}
+      >
         <div className="loginScreen__container">
           <h2>Sign in</h2>
           <form onSubmit={this.onSubmit}>
             <StyledInput
-              label="Login"
+              label="Username"
               type="text"
-              name="login"
-              value={this.state.login}
+              name="username"
+              value={this.state.username}
               onChange={this.onChange}
             />
             <StyledInput

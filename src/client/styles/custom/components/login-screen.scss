@@ -7,6 +7,10 @@
   text-align: center;
   vertical-align: middle;
 
+  &--hide {
+    display: none;
+  }
+
   &__container {
     background-color: $background-menu;
     border-radius: 20px;

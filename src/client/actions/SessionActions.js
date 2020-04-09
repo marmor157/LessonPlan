@@ -22,7 +22,7 @@ export const userSigninRequest = (credentials) => {
   return async (dispatch) => {
     dispatch(requestSignin());
     try {
-      const res = await axios.post("/api/user/auth", credentials);
+      const res = await axios.post("/api/users/auth", credentials);
       const { token } = res.data;
 
       setAuthorizationToken(token);

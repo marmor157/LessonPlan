@@ -13,7 +13,7 @@ export function reducer(state = initialState, { type, payload }) {
     case SESSION_TYPES.SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: isEmpty(payload),
+        isAuthenticated: !isEmpty(payload),
         user: payload,
         isLoading: false,
         errors: {},
