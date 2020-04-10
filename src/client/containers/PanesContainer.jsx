@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import FullScreenPane from "../components/FullScreenPane";
+import WeeklyLessons from "../components/WeeklyLessons";
 import * as PanesActions from "../actions/PanesActions";
 import * as LessonsActions from "../actions/LessonsActions";
+import { lessonsGroupedByDaySelector } from "../selectors/LessonSelectors";
 
 class PanesContainer extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -28,7 +30,7 @@ class PanesContainer extends Component {
           show={this.props.panes.showWeekPane}
           onClose={this.props.hideWeekPane}
         >
-          Hahah
+          <WeeklyLessons lessons={this.props.lessons} />
         </FullScreenPane>
       </React.Fragment>
     );
@@ -38,6 +40,7 @@ class PanesContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     panes: state.panes,
+    lessons: lessonsGroupedByDaySelector(state),
     isAuthenticated: state.session.isAuthenticated,
   };
 };

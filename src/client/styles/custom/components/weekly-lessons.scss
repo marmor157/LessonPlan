@@ -1,0 +1,16 @@
+.weeklyLessons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 20%;
+  }
+
+  &__element {
+    text-align: center;
+  }
+}
