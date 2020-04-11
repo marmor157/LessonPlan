@@ -2,15 +2,39 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  height: calc(95vh - 20px);
+  overflow: scroll;
+  align-items: stretch;
 
   &__column {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    width: 20%;
+    margin-right: 5px;
+    flex-grow: 1;
   }
 
   &__element {
     text-align: center;
+    margin-bottom: 5px;
+    min-height: 8.5vh;
+    min-width: 100px;
+    position: relative;
+
+    &--hour {
+      line-height: 8vh;
+      vertical-align: middle;
+      min-width: 160px;
+    }
+
+    &::after {
+      width: 80%;
+      content: "";
+      border-bottom: 1px solid black;
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+    }
   }
 }

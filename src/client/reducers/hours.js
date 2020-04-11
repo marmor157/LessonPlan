@@ -20,7 +20,7 @@ export function reducer(state = initialState, action = {}) {
       return {
         isLoading: false,
         errors: {},
-        HOURs: action.payload,
+        hours: action.payload,
       };
     }
 
