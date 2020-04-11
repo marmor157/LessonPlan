@@ -7,13 +7,13 @@ class HoursService {
 
   async getHourById(id) {
     return await this.hour.findOne({
-      where: { id }
+      where: { id },
     });
   }
 
   async getHoursByUserId(userId) {
     return await this.hour.findAll({
-      where: { userId }
+      where: { userId },
     });
   }
 
@@ -21,7 +21,7 @@ class HoursService {
     return await this.hour.update(
       {
         startHour,
-        finishHour
+        finishHour,
       },
       { where: { id } }
     );
@@ -31,7 +31,7 @@ class HoursService {
     return await this.hour.create({
       startHour,
       finishHour,
-      userId
+      userId,
     });
   }
 
@@ -41,7 +41,7 @@ class HoursService {
       const ret = await this.addHourToUser({
         userId,
         startHour: 0,
-        finishHour: 0
+        finishHour: 0,
       });
       hoursIds.push(ret.id);
     }
