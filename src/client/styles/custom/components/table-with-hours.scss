@@ -1,11 +1,9 @@
-.weeklyLessons {
+.tableWithHours {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  flex-grow: 1;
-  min-height: calc(16 * (8.5vh + 6px));
-  overflow-y: visible;
-  overflow-x: scroll;
+  height: calc(95vh - 20px);
+  overflow-y: scroll;
   align-items: stretch;
 
   //hide scrollbars
@@ -15,27 +13,34 @@
     display: none;
   }
 
-  &__column {
+  &__hourColumn {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     margin-right: 5px;
+  }
+
+  &__contentContainer {
     flex-grow: 1;
-    flex-basis: 0;
+    overflow-y: visible;
+    overflow-x: scroll;
+    min-height: calc(16 * (8.5vh + 6px));
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__element {
     text-align: center;
     margin-bottom: 5px;
     min-height: 8.5vh;
-    min-width: 135px;
+    min-width: 170px;
     position: relative;
-
-    &--hour {
-      line-height: 8vh;
-      vertical-align: middle;
-      min-width: 20vh;
-    }
+    line-height: 8vh;
+    vertical-align: middle;
 
     &::after {
       width: 80%;
