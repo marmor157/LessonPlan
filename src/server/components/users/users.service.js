@@ -32,10 +32,9 @@ class UsersService {
 
     const hoursId = await HoursService.createUsersDefaultHours(userData.id);
 
-    console.log(hoursId);
     await LessonsService.createUsersDefaultLessons({
       userId: userData.id,
-      hoursId
+      hoursId,
     });
 
     return userData;

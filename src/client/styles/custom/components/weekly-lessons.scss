@@ -3,8 +3,37 @@
   flex-direction: row;
   flex-wrap: nowrap;
   height: calc(95vh - 20px);
-  overflow: scroll;
+  overflow-y: scroll;
   align-items: stretch;
+
+  //hide scrollbars
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__hourColumn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-right: 5px;
+  }
+
+  &__lessonsContainer {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: auto;
+    overflow-y: visible;
+    overflow-x: scroll;
+    min-height: calc(16 * (8.5vh + 6px));
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   &__column {
     display: flex;
@@ -12,19 +41,20 @@
     flex-wrap: nowrap;
     margin-right: 5px;
     flex-grow: 1;
+    flex-basis: 0;
   }
 
   &__element {
     text-align: center;
     margin-bottom: 5px;
     min-height: 8.5vh;
-    min-width: 100px;
+    min-width: 135px;
     position: relative;
 
     &--hour {
       line-height: 8vh;
       vertical-align: middle;
-      min-width: 160px;
+      min-width: 20vh;
     }
 
     &::after {
