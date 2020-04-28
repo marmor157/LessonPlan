@@ -25,7 +25,7 @@
     flex-grow: 10;
     overflow-y: visible;
     overflow-x: scroll;
-    min-height: calc(16 * (8.5vh + 6px));
+    min-height: 1248px;
 
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -37,10 +37,10 @@
   &__element {
     text-align: center;
     margin-bottom: 5px;
-    min-height: 8.5vh;
+    min-height: 72px;
     min-width: 170px;
     position: relative;
-    line-height: 8vh;
+    line-height: 60px;
     vertical-align: middle;
 
     &::after {
