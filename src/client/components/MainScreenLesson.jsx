@@ -4,15 +4,15 @@ export default class MainScreenLesson extends PureComponent {
   render() {
     const {
       dayText,
-      subjectName = "- -",
+      lessonText = "- -",
       roomText,
-      roomNumber = "- -"
+      roomNumber = "- -",
     } = this.props;
 
     return (
       <div className="mainScreen__lesson">
         {dayText}:<br />
-        {subjectName}
+        {lessonText}
         <br />
         {roomText} {roomNumber}
       </div>

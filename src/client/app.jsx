@@ -1,12 +1,10 @@
 import React, { useState, Component } from "react";
 
-//Components
-import MainScreen from "./components/MainScreen";
-
 //Containers
 import LoginScreenContainer from "./containers/LoginScreenContainer";
 import HorizontalMenuContainer from "./containers/HorizontalMenuContainer";
 import PanesContainer from "./containers/PanesContainer";
+import MainScreenContainer from "./containers/MainScreenContainer";
 
 //Styles
 import "./fontawesome";
@@ -17,7 +15,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <LoginScreenContainer />
-        <MainScreen />
+        <MainScreenContainer />
         <HorizontalMenuContainer />
         <PanesContainer />
       </div>
