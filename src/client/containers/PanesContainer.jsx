@@ -5,7 +5,11 @@ import WeeklyLessons from "../components/WeeklyLessons";
 import * as PanesActions from "../actions/PanesActions";
 import * as LessonsActions from "../actions/LessonsActions";
 import * as HoursActions from "../actions/HoursActions";
-import { lessonsGroupedByDaySelector } from "../selectors/LessonSelectors";
+import {
+  lessonsGroupedByDaySelector,
+  todayLessonsSelector,
+} from "../selectors/LessonSelectors";
+import TodayLessons from "../components/TodayLessons";
 
 class PanesContainer extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -25,7 +29,10 @@ class PanesContainer extends Component {
           show={this.props.panes.showTodayPane}
           onClose={this.props.hideTodayPane}
         >
-          Hahah
+          <TodayLessons
+            lessons={this.props.todayLessons}
+            hours={this.props.hours}
+          />
         </FullScreenPane>
         <FullScreenPane
           title="Week"
@@ -46,6 +53,7 @@ const mapStateToProps = (state) => {
   return {
     panes: state.panes,
     lessons: lessonsGroupedByDaySelector(state),
+    todayLessons: todayLessonsSelector(state),
     hours: state.hours.hours,
     isAuthenticated: state.session.isAuthenticated,
   };

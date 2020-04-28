@@ -1,6 +1,6 @@
-.weeklyLessons {
+.todayLessons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   flex-grow: 1;
   min-height: calc(16 * (8.5vh + 6px));
@@ -13,14 +13,5 @@
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  &__column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-right: 5px;
-    flex-grow: 1;
-    flex-basis: 0;
   }
 }

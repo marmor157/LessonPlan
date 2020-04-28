@@ -1,11 +1,11 @@
 import React from "react";
 import LessonsElement from "./LessonsElement";
 
-export default function WeeklyLessonsElement(props) {
+export default function TodayLessonsElement(props) {
   const { lesson } = props;
   return (
     <LessonsElement
-      upperText={lesson.subject.shortName}
+      upperText={lesson.subject.longName}
       bottomText={lesson.roomNumber + "."}
     />
   );

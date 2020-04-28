@@ -3,6 +3,7 @@ import WeeklyLessonsElement from "./WeeklyLessonsElement";
 
 import getNameDay from "../utils/getDayName";
 import TableWithHours from "./TableWithHours";
+import LessonsElement from "./LessonsElement";
 
 export default class WeeklyLessons extends PureComponent {
   render() {
@@ -11,7 +12,7 @@ export default class WeeklyLessons extends PureComponent {
     //Map user's lessons with day name as a top element
     const lessonsDisplay = lessons.map((lessonRow, id) => (
       <div className="weeklyLessons__column" key={id}>
-        <div className="weeklyLessons__element">{getNameDay(id + 1)}</div>
+        <LessonsElement upperText={getNameDay(id + 1)} />
 
         {lessonRow.map((lesson, id) => (
           <WeeklyLessonsElement lesson={lesson} key={id} />

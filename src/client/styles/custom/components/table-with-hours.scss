@@ -18,10 +18,11 @@
     flex-direction: column;
     flex-wrap: nowrap;
     margin-right: 5px;
+    flex-grow: 1;
   }
 
   &__contentContainer {
-    flex-grow: 1;
+    flex-grow: 10;
     overflow-y: visible;
     overflow-x: scroll;
     min-height: calc(16 * (8.5vh + 6px));
