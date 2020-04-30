@@ -6,15 +6,29 @@ class Subject extends Sequelize.Model {
       {
         shortName: {
           type: Sequelize.STRING,
-          allowNull: false
+          allowNull: false,
         },
         longName: {
           type: Sequelize.STRING,
-          allowNull: false
-        }
+          allowNull: false,
+        },
       },
       { sequelize, modelName: "subject" }
     );
+
+    //Creates default subject at creation of database
+    this.afterSync(async (subject) => {
+      await this.findOrCreate({
+        where: {
+          id: 1,
+        },
+        defaults: {
+          id: 1,
+          shortName: "default",
+          longName: "Default subject",
+        },
+      });
+    });
   }
 }
 

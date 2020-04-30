@@ -1,23 +1,23 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import Sequelize from "sequelize";
 
-import { databaseConfig } from "./config";
-import { Router, Models } from "./components";
+import { Router } from "./components";
+import Database from "./database";
 
 class Server {
   constructor() {
     this.app = express();
+    this.database = new Database();
     this.config();
+    this.database.init();
     this.initRoutes();
-    this.initDatabase();
     this.handleErrors();
   }
 
   async config() {
-    this.app.use(bodyParser.json()); // support json encoded bodies
-    this.app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
 
     this.app.use(function (req, res, next) {
       res.setHeader("Access-Control-Allow-Origin", "*");
@@ -33,34 +33,6 @@ class Server {
     });
 
     this.app.use("/", express.static(path.join(__dirname, "../static/")));
-  }
-
-  async initDatabase() {
-    const { name, username, password, host, databaseFullUrl } = databaseConfig;
-
-    let sequelize;
-
-    if (!databaseFullUrl) {
-      sequelize = new Sequelize(name, username, password, {
-        host: host,
-        dialect: "mysql",
-        logging: false,
-      });
-    } else {
-      sequelize = new Sequelize(databaseFullUrl);
-    }
-
-    try {
-      await sequelize.authenticate();
-      console.log("Connection to database has been established successfully.");
-
-      this.models = new Models();
-      this.models.initModels(sequelize);
-
-      await sequelize.sync({ force: false, alter: true });
-    } catch (err) {
-      console.log("Connection to database failed", err);
-    }
   }
 
   initRoutes() {

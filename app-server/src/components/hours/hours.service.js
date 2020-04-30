@@ -37,11 +37,11 @@ class HoursService {
 
   async createUsersDefaultHours(userId) {
     let hoursIds = [];
-    for (let hourId = 0; hourId < 15; hourId++) {
+    for (let hour = 0; hour < 15; hour++) {
       const ret = await this.addHourToUser({
         userId,
-        startHour: 0,
-        finishHour: 0,
+        startHour: 450 + 55 * hour,
+        finishHour: 450 + 55 * hour + 45,
       });
       hoursIds.push(ret.id);
     }
