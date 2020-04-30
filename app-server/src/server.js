@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import Sequelize from "sequelize";
-import cors from "cors";
 
 import { databaseConfig } from "./config";
 import { Router, Models } from "./components";
@@ -37,23 +36,17 @@ class Server {
   }
 
   async initDatabase() {
-    const {
-      name,
-      username,
-      password,
-      host,
-      cleardbDatabaseUrl,
-    } = databaseConfig;
+    const { name, username, password, host, databaseFullUrl } = databaseConfig;
 
-    const sequelize;
-    
-    if(!databaseFullUrl) {
+    let sequelize;
+
+    if (!databaseFullUrl) {
       sequelize = new Sequelize(name, username, password, {
         host: host,
         dialect: "mysql",
         logging: false,
       });
-    }else{
+    } else {
       sequelize = new Sequelize(databaseFullUrl);
     }
 
