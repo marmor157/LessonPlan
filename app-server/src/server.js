@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import Sequelize from "sequelize";
+import cors from "cors";
 
 import { databaseConfig } from "./config";
 import { Router, Models } from "./components";
@@ -20,43 +21,41 @@ class Server {
     this.app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
     this.app.use(function (req, res, next) {
-      // Website you wish to allow to connect
       res.setHeader("Access-Control-Allow-Origin", "*");
 
-      // Request methods you wish to allow
       res.setHeader(
         "Access-Control-Allow-Methods",
         "GET, POST, OPTIONS, PUT, PATCH, DELETE"
       );
 
-      // Request headers you wish to allow
       res.setHeader("Access-Control-Allow-Headers", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-      );
 
-      // Set to true if you need the website to include cookies in the requests sent
-      // to the API (e.g. in case you use sessions)
-      res.setHeader("Access-Control-Allow-Credentials", true);
-
-      // Pass to next layer of middleware
       next();
     });
 
-    this.app.use(
-      "/",
-      express.static(path.join(__dirname, "../../dist/assets"))
-    );
+    this.app.use("/", express.static(path.join(__dirname, "../static/")));
   }
 
   async initDatabase() {
-    const { name, username, password, host } = databaseConfig;
-    const sequelize = new Sequelize(name, username, password, {
-      host: host,
-      dialect: "mysql",
-      logging: false,
-    });
+    const {
+      name,
+      username,
+      password,
+      host,
+      cleardbDatabaseUrl,
+    } = databaseConfig;
+
+    const sequelize;
+    
+    if(!databaseFullUrl) {
+      sequelize = new Sequelize(name, username, password, {
+        host: host,
+        dialect: "mysql",
+        logging: false,
+      });
+    }else{
+      sequelize = new Sequelize(databaseFullUrl);
+    }
 
     try {
       await sequelize.authenticate();

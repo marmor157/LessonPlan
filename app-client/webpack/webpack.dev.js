@@ -1,18 +1,23 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const baseConfig = require("./webpack.config");
-const webpackHotMiddleware = require("webpack-hot-middleware");
 const path = require("path");
 
 module.exports = merge(baseConfig, {
   entry: {
-    app: [
-      path.join(__dirname, "../src/client/index.jsx"),
-      "webpack-hot-middleware/client"
-    ]
+    app: [path.join(__dirname, "../src/index.jsx")],
   },
   devtool: "inline-source-map",
   mode: "development",
+  devServer: {
+    hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "*",
+    },
+  },
+
   module: {
     rules: [
       {
@@ -21,22 +26,18 @@ module.exports = merge(baseConfig, {
         use: [
           {
             loader: "style-loader",
-            options: {
-              sourceMap: true
-            }
           },
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
-            loader: "sass-loader"
-          }
-        ]
-      }
-    ]
+            loader: "sass-loader",
+          },
+        ],
+      },
+    ],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
 });

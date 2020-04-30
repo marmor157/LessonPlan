@@ -1,5 +1,6 @@
 import { LESSONS_TYPES } from "../constants/LessonsTypes";
 import axios from "axios";
+import getPath from "../utils/getPath";
 
 export const requestLesson = () => ({
   type: LESSONS_TYPES.REQUEST_LESSON,
@@ -24,7 +25,7 @@ export const getLessons = () => {
   return async (dispatch) => {
     dispatch(requestLesson());
     try {
-      const res = await axios.get("/api/lessons");
+      const res = await axios.get(getPath("/api/lessons"));
       dispatch(receiveLessons(res.data));
     } catch (error) {
       dispatch(setErrors(error.response.data));

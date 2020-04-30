@@ -1,5 +1,6 @@
 import { HOURS_TYPES } from "../constants/HoursTypes";
 import axios from "axios";
+import getPath from "../utils/getPath";
 
 export const requestHour = () => ({
   type: HOURS_TYPES.REQUEST_HOUR,
@@ -24,7 +25,7 @@ export const getHours = () => {
   return async (dispatch) => {
     dispatch(requestHour());
     try {
-      const res = await axios.get("/api/hours");
+      const res = await axios.get(getPath("/api/hours"));
       dispatch(receiveHours(res.data));
     } catch (error) {
       dispatch(setErrors(error.response.data));

@@ -12,33 +12,30 @@ module.exports = merge(baseConfig, {
         exclude: /node_modules/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
             options: {
-              modules: {
-                localIdentName: "[name]__[local]___[hash:base64:5]"
-              },
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
-            loader: "sass-loader"
-          }
-        ]
-      }
-    ]
+            loader: "sass-loader",
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
+        NODE_ENV: JSON.stringify("production"),
+      },
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+      chunkFilename: "[id].css",
+    }),
+  ],
 });

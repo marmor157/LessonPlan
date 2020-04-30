@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 
+import getPath from "../utils/getPath";
 import setAuthorizationToken from "../utils/setAuthorizationToken";
 import { SESSION_TYPES } from "../constants/SessionTypes";
 
@@ -22,12 +23,13 @@ export const userSigninRequest = (credentials) => {
   return async (dispatch) => {
     dispatch(requestSignin());
     try {
-      const res = await axios.post("/api/users/auth", credentials);
+      const res = await axios.post(getPath("/api/users/auth"), credentials);
       const { token } = res.data;
 
       setAuthorizationToken(token);
       dispatch(setCurrentUser(jwt.decode(token)));
     } catch (error) {
+      console.log(error);
       dispatch(setErrors(error.response.data));
     }
   };

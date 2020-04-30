@@ -1,5 +1,6 @@
 import { USERS_TYPES } from "../constants/UsersTypes";
 import axios from "axios";
+import getPath from "../utils/getPath";
 
 export const requestUser = () => ({
   type: USERS_TYPES.REQUEST_USER,
@@ -28,7 +29,7 @@ export const fetchUser = () => {
   return async (dispatch) => {
     dispatch(requestUser());
     try {
-      const res = await axios.get("/api/users");
+      const res = await axios.get(getPath("/api/users"));
       dispatch(receiveUser(res));
     } catch (error) {
       dispatch(setErrors(error.response.data));
@@ -40,7 +41,7 @@ export const updatePassword = (password) => {
   return async (dispatch) => {
     dispatch(updateUser());
     try {
-      await axios.post("/api/users/password", password);
+      await axios.post(getPath("/api/users/password"), password);
       dispatch(logout());
     } catch (error) {
       dispatch(setErrors(error.response.data));
