@@ -42,7 +42,7 @@ export default class UsersRouter {
           const token = jwt.sign(
             {
               id: user.id,
-              name: user.username,
+              username: user.username,
             },
             jwtSecretCode
           );
@@ -59,7 +59,7 @@ export default class UsersRouter {
           const token = jwt.sign(
             {
               id: data.id,
-              name: data.username,
+              username: data.username,
             },
             jwtSecretCode
           );

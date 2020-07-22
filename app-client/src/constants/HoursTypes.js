@@ -1,7 +1,0 @@
-export const HOURS_TYPES = {
-  REQUEST_HOUR: "hours/REQUEST_HOUR",
-  RECEIVE_HOURS: "hours/RECEIVE_HOURS",
-  RECEIVE_HOUR: "hours/RECEIVE_HOUR",
-
-  SET_ERRORS: "hours/SET_HOURS",
-};

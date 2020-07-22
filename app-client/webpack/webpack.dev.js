@@ -4,9 +4,6 @@ const baseConfig = require("./webpack.config");
 const path = require("path");
 
 module.exports = merge(baseConfig, {
-  entry: {
-    app: [path.join(__dirname, "../src/index.jsx")],
-  },
   devtool: "inline-source-map",
   mode: "development",
   devServer: {
