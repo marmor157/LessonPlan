@@ -22,6 +22,12 @@ module.exports = merge(baseConfig, {
           },
           {
             loader: "sass-loader",
+            options: {
+              prependData: `@import "${path.resolve(
+                __dirname,
+                "../src/scss/_global.scss"
+              )}";`,
+            },
           },
         ],
       },

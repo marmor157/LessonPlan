@@ -1,16 +1,16 @@
 import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 
-import * as PanesActions from "../actions/PanesActions";
-import * as LessonsActions from "../actions/LessonsActions";
-import * as HoursActions from "../actions/HoursActions";
+import { actions as PanesActions } from "../services/panes";
+import { actions as LessonsActions } from "../services/lessons";
+import { actions as HoursActions } from "../services/hours";
 import {
   lessonsGroupedByDaySelector,
   todayLessonsSelector,
-} from "../selectors/LessonSelectors";
+} from "../services/lessons/lessons.selectors";
 
-import { IAppState } from "../reducers";
-import Panes from "../components/Panes";
+import { IAppState } from "../services";
+import Panes from "../components/Panes/Panes";
 
 const mapStateToProps = (state: IAppState) => {
   return {

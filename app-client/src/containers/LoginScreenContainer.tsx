@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LoginScreen from "../components/LoginScreen";
-import { userSigninRequest } from "../actions/SessionActions";
-import { IAppState } from "../reducers";
+import LoginScreen from "../components/LoginScreen/LoginScreen";
+import { userSigninRequest } from "../services/session/session.actions";
+import { IAppState } from "../services";
 
 const mapStateToProps = (state: IAppState) => {
   return {

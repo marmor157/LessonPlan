@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import MainScreen from "../components/MainScreen";
+import MainScreen from "../components/MainScreen/MainScreen";
 import {
   currentLessonSelector,
   nextLessonSelector,
-} from "../selectors/LessonSelectors";
-import { IAppState } from "../reducers";
+} from "../services/lessons/lessons.selectors";
+import { IAppState } from "../services";
 
 const mapStateToProps = (state: IAppState) => {
   return {

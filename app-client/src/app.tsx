@@ -8,7 +8,7 @@ import MainScreenContainer from "./containers/MainScreenContainer";
 
 //Styles
 import "./fontawesome";
-import "./styles/main.scss";
+import "./App.scss";
 
 export const App = () => {
   return (

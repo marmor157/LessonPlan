@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import rootReducer from "./reducers";
+import rootReducer from "./services";
 
 declare global {
   interface Window {
@@ -18,7 +18,7 @@ export default function configureStore() {
   );
 
   if (module.hot) {
-    module.hot.accept("./reducers", () => {
+    module.hot.accept("./services", () => {
       store.replaceReducer(rootReducer);
     });
   }
