@@ -16,7 +16,5 @@ const render = (Component: React.ComponentType) => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept("./app", () => {
-    render(App);
-  });
+  module.hot.accept();
 }
