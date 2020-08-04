@@ -6,22 +6,22 @@ import HourPickerElement from "./HourPickerElement";
 interface Props {
   possibleValues: Array<number | string>;
   actualValueIndex: number;
+  title?: string;
   changeActual: (newValue: number) => void;
 }
 
 const HourPickerColumn = ({
   possibleValues,
   actualValueIndex,
+  title,
   changeActual,
 }: Props) => {
-  const SCROLL_TREHSHOLD = 20;
-
   const onScroll = (e: React.WheelEvent<HTMLUListElement>) => {
     let change = 0;
     let newPosition = actualValueIndex;
 
-    if (e.deltaY > SCROLL_TREHSHOLD) change = -1;
-    else if (e.deltaY < -SCROLL_TREHSHOLD) change = 1;
+    if (e.deltaY > 0) change = -1;
+    else if (e.deltaY < 0) change = 1;
 
     if (newPosition + change > possibleValues.length) newPosition = 0;
     else if (newPosition + change < 0) newPosition = possibleValues.length - 1;
@@ -59,13 +59,16 @@ const HourPickerColumn = ({
 
   return (
     <div className="hourPicker__column">
-      <ul
-        className="hourPicker__list"
-        draggable={true}
-        onWheel={(e) => onScroll(e)}
-      >
-        {elements}
-      </ul>
+      {title ? <div className="hourPicker__columnTitle">{title}</div> : null}
+      <div className="hourPicker__listContainer">
+        <ul
+          className="hourPicker__list"
+          draggable={true}
+          onWheel={(e) => onScroll(e)}
+        >
+          {elements}
+        </ul>
+      </div>
     </div>
   );
 };

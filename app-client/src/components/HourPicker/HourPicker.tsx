@@ -6,15 +6,28 @@ import "./HourPicker.scss";
 interface Props {}
 
 const HourPicker = (props: Props) => {
-  const [actualIndex, setActualIndex] = useState(0);
+  const [actualHoursIndex, setActualHoursIndex] = useState(0);
+  const [actualMinutesIndex, setActualMinutesIndex] = useState(0);
+
+  const possibleHours = Array.from(Array(24), (_, i) => i + 1);
+  const possibleMinutes = Array.from(Array(60), (_, i) => i + 1);
 
   return (
     <div className="hourPicker">
       <HourPickerColumn
-        possibleValues={["tak", "nie", "moze"]}
-        actualValueIndex={actualIndex}
+        title={"Hour"}
+        possibleValues={possibleHours}
+        actualValueIndex={actualHoursIndex}
         changeActual={(newValue: number): void => {
-          setActualIndex(newValue);
+          setActualHoursIndex(newValue);
+        }}
+      />
+      <HourPickerColumn
+        title={"Minutes"}
+        possibleValues={possibleMinutes}
+        actualValueIndex={actualMinutesIndex}
+        changeActual={(newValue: number): void => {
+          setActualMinutesIndex(newValue);
         }}
       />
     </div>
